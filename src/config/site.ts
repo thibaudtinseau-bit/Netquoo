@@ -37,10 +37,10 @@ export const site = {
   quoteDelay: 'sous 24 h ouvrées',
   /** Dirigeant présenté dans la section « Qui sommes-nous » */
   owner: {
-    name: 'Anthonin',
+    name: 'Antonin',
     role: 'Dirigeant de Netquoo',
     yearsAtHead: 15,
-    photo: '/images/anthonin.webp',
+    photo: '/images/antonin.webp',
   },
 } as const;
 
