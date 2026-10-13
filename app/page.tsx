@@ -18,6 +18,7 @@ import {
   UserRound,
   type LucideIcon,
 } from 'lucide-react';
+import { AboutOwner } from '@/components/AboutOwner';
 import { CtaBanner } from '@/components/CtaBanner';
 import { JsonLd } from '@/components/JsonLd';
 import { SectionHeading } from '@/components/SectionHeading';
@@ -192,6 +193,7 @@ export default function HomePage() {
     <>
       <Hero />
       <Services />
+      <AboutOwner />
       <WhyNetquoo />
       <Method />
       <Zone />
@@ -259,7 +261,7 @@ function Hero() {
             </div>
 
             <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-2.5 text-sm font-medium text-slate-600 motion-safe:animate-fade-up motion-safe:[animation-delay:320ms]">
-              {['Devis gratuit et sans engagement', 'Visite d’évaluation offerte', `Réponse ${site.quoteDelay}`].map((t) => (
+              {[`Plus de ${site.owner.yearsAtHead} ans d’expérience`, 'Devis gratuit et sans engagement', 'Visite d’évaluation offerte', `Réponse ${site.quoteDelay}`].map((t) => (
                 <li key={t} className="inline-flex items-center gap-2">
                   <span className="flex h-5 w-5 items-center justify-center rounded-full bg-brand-600 text-white">
                     <svg viewBox="0 0 12 12" className="h-3 w-3" aria-hidden="true">
@@ -485,7 +487,7 @@ function WhyNetquoo() {
                 La propreté de vos locaux, <span className="text-gradient">sans y penser</span>
               </>
             }
-            text="Jeune entreprise locale, Netquoo a été pensée pour les professionnels qui veulent des locaux impeccables sans avoir à s’en occuper. Voici ce à quoi nous nous engageons, dès la première intervention."
+            text={`Depuis plus de ${site.owner.yearsAtHead} ans, Netquoo accompagne les professionnels qui veulent des locaux impeccables sans avoir à s’en occuper. Voici ce à quoi nous nous engageons, dès la première intervention.`}
           />
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <Link href="/devis" className="btn-primary">

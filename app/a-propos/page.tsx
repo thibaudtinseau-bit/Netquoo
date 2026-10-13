@@ -19,6 +19,7 @@ import {
   UserRound,
   type LucideIcon,
 } from 'lucide-react';
+import { AboutOwner } from '@/components/AboutOwner';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { CtaBanner, CtaInline } from '@/components/CtaBanner';
 import { SectionHeading } from '@/components/SectionHeading';
@@ -29,7 +30,7 @@ import { communes } from '@/data/communes';
 import { pageMetadata } from '@/lib/seo';
 
 export const metadata = pageMetadata({
-  title: 'Notre société de nettoyage à Montarnaud',
+  title: 'Qui sommes-nous · Société de nettoyage à Montarnaud',
   description:
     'Netquoo, société de nettoyage pour entreprises à Montarnaud : interlocuteur unique, équipe formée, horaires flexibles et contrôle qualité. Nos engagements.',
   path: '/a-propos',
@@ -123,17 +124,17 @@ export default function AProposPage() {
       <section className="bg-mesh relative -mt-[72px] overflow-hidden pb-16 pt-[104px] md:pb-24 md:pt-[128px]">
         <div className="bg-grid pointer-events-none absolute inset-0 opacity-70 [mask-image:radial-gradient(ellipse_70%_60%_at_50%_0%,black,transparent)]" />
         <div className="container relative">
-          <Breadcrumbs items={[{ label: 'Pourquoi Netquoo', href: '/a-propos' }]} />
+          <Breadcrumbs items={[{ label: 'Qui sommes-nous', href: '/a-propos' }]} />
 
           <div className="mt-8 grid items-center gap-12 lg:grid-cols-12 lg:gap-10">
             <div className="lg:col-span-7">
-              <span className="eyebrow motion-safe:animate-fade-up">Pourquoi Netquoo</span>
+              <span className="eyebrow motion-safe:animate-fade-up">Qui sommes-nous</span>
               <h1 className="mt-6 text-[2.4rem] font-extrabold leading-[1.06] tracking-[-0.03em] motion-safe:animate-fade-up motion-safe:[animation-delay:80ms] sm:text-5xl lg:text-[3.6rem]">
                 Netquoo, une société de nettoyage <span className="text-gradient">locale et engagée</span> à Montarnaud
               </h1>
               <p className="mt-6 max-w-2xl text-lg leading-relaxed text-slate-600 motion-safe:animate-fade-up motion-safe:[animation-delay:160ms] md:text-xl">
-                Jeune entreprise implantée à Montarnaud, Netquoo se consacre au nettoyage des locaux professionnels dans un
-                rayon de {site.radiusKm}&nbsp;km. Notre conviction&nbsp;: un service de proximité, réactif et soigné, porté
+                Implantée à Montarnaud et dirigée par {site.owner.name} depuis plus de {site.owner.yearsAtHead}&nbsp;ans, Netquoo se consacre au
+                nettoyage des locaux professionnels dans un rayon de {site.radiusKm}&nbsp;km. Notre conviction&nbsp;: un service de proximité, réactif et soigné, porté
                 par des engagements clairs que nous tenons.
               </p>
               <div className="mt-9 flex flex-col gap-3 motion-safe:animate-fade-up motion-safe:[animation-delay:240ms] sm:flex-row sm:items-center">
@@ -185,13 +186,16 @@ export default function AProposPage() {
         </div>
       </section>
 
-      {/* ----------------------------- Qui sommes-nous ----------------------------- */}
+      {/* ------------------------- Dirigeant + chiffres clés ------------------------- */}
+      <AboutOwner showMoreLink={false} />
+
+      {/* ------------------------------ Notre approche ------------------------------ */}
       <section className="section">
         <div className="container grid gap-12 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-5">
             <SectionHeading
               align="left"
-              eyebrow="Qui sommes-nous"
+              eyebrow="Notre approche"
               title={
                 <>
                   Une entreprise de proximité, <span className="text-gradient">pensée pour les professionnels</span>
@@ -201,7 +205,7 @@ export default function AProposPage() {
           </div>
           <div className="prose-nq lg:col-span-7">
             <p className="!mt-0">
-              <strong>Netquoo est une jeune société de nettoyage professionnel installée à Montarnaud</strong>, entre
+              <strong>Netquoo est une société de nettoyage professionnel installée à Montarnaud</strong>, entre
               Montpellier et la vallée de l’Hérault. Nous accompagnons les entreprises dans l’entretien de leurs locaux&nbsp;:
               bureaux, commerces, cabinets médicaux et paramédicaux, entrepôts, mais aussi vitrerie et nettoyage de fin de
               chantier.

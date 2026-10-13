@@ -27,7 +27,25 @@ export const site = {
   radiusKm: 20,
   hours: 'Du lundi au vendredi, 7h–19h · interventions tôt le matin, le soir et le week-end sur demande',
   quoteDelay: 'sous 24 h ouvrées',
+  /** Dirigeant présenté dans la section « Qui sommes-nous » */
+  owner: {
+    name: 'Anthonin',
+    role: 'Dirigeant de Netquoo',
+    yearsAtHead: 15,
+    photo: '/images/anthonin.webp',
+  },
 } as const;
+
+/**
+ * Chiffres de réassurance affichés sur le site.
+ * ⚠️ Ils doivent rester exacts : mets-les à jour dès qu'ils évoluent.
+ */
+export const stats: { value: number; prefix?: string; suffix?: string; label: string; detail: string }[] = [
+  { value: 15, prefix: '+', label: 'ans d’expérience', detail: 'à la tête de Netquoo' },
+  { value: 400, prefix: '+', label: 'chantiers réalisés', detail: 'bureaux, commerces, cabinets, fins de chantier' },
+  { value: 73, label: 'communes desservies', detail: 'dans un rayon de 20 km autour de Montarnaud' },
+  { value: 24, suffix: ' h', label: 'pour recevoir votre devis', detail: 'gratuit et sans engagement' },
+];
 
 export const phoneHref = site.phone ? `tel:${site.phone.replace(/[^\d+]/g, '').replace(/^0/, '+33')}` : '';
 export const emailHref = site.email ? `mailto:${site.email}` : '';
@@ -35,6 +53,6 @@ export const emailHref = site.email ? `mailto:${site.email}` : '';
 export const nav = [
   { href: '/services', label: 'Services' },
   { href: '/zones-intervention', label: "Zones d'intervention" },
-  { href: '/a-propos', label: 'Pourquoi Netquoo' },
+  { href: '/a-propos', label: 'Qui sommes-nous' },
   { href: '/devis', label: 'Contact' },
 ] as const;

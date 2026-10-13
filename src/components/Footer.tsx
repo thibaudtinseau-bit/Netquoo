@@ -63,7 +63,7 @@ export function Footer() {
           <p>© {new Date().getFullYear()} {site.legalName}. Tous droits réservés.</p>
           <div className="flex gap-5">
             <Link href="/mentions-legales" className="hover:text-white">Mentions légales</Link>
-            <Link href="/a-propos" className="hover:text-white">Pourquoi Netquoo</Link>
+            <Link href="/a-propos" className="hover:text-white">Qui sommes-nous</Link>
             <Link href="/devis" className="hover:text-white">Contact</Link>
           </div>
         </div>

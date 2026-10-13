@@ -88,7 +88,7 @@ export default function NotFound() {
                 </span>
                 <span>
                   <span className="flex items-center gap-1 font-bold text-ink group-hover:text-brand-700">
-                    Pourquoi Netquoo <ArrowUpRight className="h-4 w-4" />
+                    Qui sommes-nous <ArrowUpRight className="h-4 w-4" />
                   </span>
                   <span className="mt-1 block text-sm text-slate-600">Nos engagements et notre méthode</span>
                 </span>

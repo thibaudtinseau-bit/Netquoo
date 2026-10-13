@@ -43,6 +43,7 @@ export function localBusinessJsonLd(): Record<string, unknown> {
     },
     geo: { '@type': 'GeoCoordinates', latitude: site.geo.lat, longitude: site.geo.lon },
     areaServed: communes.map((c) => ({ '@type': 'City', name: c.name })),
+    employee: { '@type': 'Person', name: site.owner.name, jobTitle: site.owner.role },
     priceRange: '€€',
   };
 }
