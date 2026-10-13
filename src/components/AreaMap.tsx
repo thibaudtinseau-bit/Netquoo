@@ -75,7 +75,7 @@ function textWidth(s: string, fontSize: number): number {
     else if (/[A-ZÀ-Ý]/.test(ch)) w += 0.7;
     else w += 0.58;
   }
-  return w * fontSize;
+  return w * fontSize * 1.08;
 }
 
 const overlaps = (a: Box, b: Box) => a.x1 < b.x2 && a.x2 > b.x1 && a.y1 < b.y2 && a.y2 > b.y1;
@@ -91,7 +91,7 @@ const pointBox = (p: { x: number; y: number; r: number }, pad = 1.5): Box => ({
 
 function labelBox(x: number, y: number, anchor: Anchor, w: number, fontSize: number): Box {
   const x1 = anchor === 'start' ? x : anchor === 'end' ? x - w : x - w / 2;
-  return { x1: x1 - 2, y1: y - fontSize * 0.74 - 1.5, x2: x1 + w + 2, y2: y + fontSize * 0.24 + 1.5 };
+  return { x1: x1 - 3.5, y1: y - fontSize * 0.74 - 1.5, x2: x1 + w + 3.5, y2: y + fontSize * 0.24 + 1.5 };
 }
 
 interface LabelRequest {
@@ -134,13 +134,14 @@ function placeLabels(requests: LabelRequest[], obstacles: Box[], bounds: Box): {
         (k) => !(req.prefer ?? []).includes(k as never),
       ),
     ];
-    const own = pointBox(at, 0.5);
+    // Le point auquel le libellé est rattaché (quelle que soit sa marge) n'est pas un obstacle
+    const isOwn = (o: Box) => Math.abs((o.x1 + o.x2) / 2 - at.x) < 0.01 && Math.abs((o.y1 + o.y2) / 2 - at.y) < 0.01;
     let best: { pos: { x: number; y: number; anchor: Anchor }; box: Box; cost: number } | null = null;
     for (const k of order) {
       const pos = positions[k];
       const box = labelBox(pos.x, pos.y, pos.anchor, w, fontSize);
       if (!inside(box, bounds)) continue;
-      const cost = taken.reduce((sum, o) => (o === own ? sum : sum + overlapArea(box, o)), 0);
+      const cost = taken.reduce((sum, o) => (isOwn(o) ? sum : sum + overlapArea(box, o)), 0);
       if (cost === 0) {
         best = { pos, box, cost };
         break;
@@ -163,30 +164,25 @@ function placeLabels(requests: LabelRequest[], obstacles: Box[], bounds: Box): {
   return { placed, boxes: taken };
 }
 
-/** Choisit un angle libre pour les étiquettes « 5 km / 10 km… » des anneaux. */
-function ringLabelPositions(points: Point[], fontSize: number): { km: number; x: number; y: number }[] {
-  const boxes = points.map((p) => pointBox(p, 3));
-  const angles = [315, 300, 330, 285, 345, 225, 240, 210, 135, 150, 120, 45, 60, 30];
-  const at = (km: number, deg: number) => {
-    const a = (deg * Math.PI) / 180;
-    return { km, x: Math.sin(a) * km * PX_PER_KM, y: -Math.cos(a) * km * PX_PER_KM };
-  };
-  const fits = (p: { km: number; x: number; y: number }) => {
-    const w = textWidth(`${p.km} km`, fontSize) + 10;
-    const box = { x1: p.x - w / 2, y1: p.y - fontSize * 0.8, x2: p.x + w / 2, y2: p.y + fontSize * 0.8 };
-    return !boxes.some((b) => overlaps(box, b));
-  };
-  let bestAngle = angles[0];
-  let bestScore = -1;
-  for (const deg of angles) {
-    const score = RINGS_KM.filter((km) => fits(at(km, deg))).length;
-    if (score > bestScore) {
-      bestScore = score;
-      bestAngle = deg;
-    }
-    if (score === RINGS_KM.length) break;
-  }
-  return RINGS_KM.map((km) => at(km, bestAngle));
+/** Étiquettes « 5 km / 10 km… » : chaque anneau prend l'angle libre le plus proche de l'angle préféré. */
+function ringLabelPositions(obstacles: Box[], fontSize: number, preferred = 330): { km: number; x: number; y: number; box: Box }[] {
+  type RingLabel = { km: number; x: number; y: number; box: Box };
+  const prefs = [0, ...Array.from({ length: 36 }, (_, i) => (i % 2 ? -1 : 1) * 5 * Math.ceil((i + 1) / 2))].map(
+    (o) => (preferred + o + 360) % 360,
+  );
+  const taken = [...obstacles];
+  return RINGS_KM.map((km) => {
+    const w = textWidth(`${km} km`, fontSize) + 10;
+    const make = (deg: number) => {
+      const a = (deg * Math.PI) / 180;
+      const x = Math.sin(a) * km * PX_PER_KM;
+      const y = -Math.cos(a) * km * PX_PER_KM;
+      return { km, x, y, box: { x1: x - w / 2, y1: y - fontSize * 0.8, x2: x + w / 2, y2: y + fontSize * 0.8 } };
+    };
+    const found = prefs.map(make).find((p) => !taken.some((b) => overlaps(p.box, b)));
+    if (found) taken.push(found.box);
+    return found;
+  }).filter((p): p is RingLabel => Boolean(p));
 }
 
 const allPoints: Point[] = communes
@@ -306,11 +302,6 @@ function fullLabels(fontSize: number, maxTop: number, perDirection: number, boun
     bounds,
   );
   const ringFont = fontSize * 0.82;
-  const ringLabels = ringLabelPositions(allPoints, ringFont);
-  const ringBoxes = ringLabels.map((p) => {
-    const w = textWidth(`${p.km} km`, ringFont) + 10;
-    return { x1: p.x - w / 2, y1: p.y - ringFont * 0.8, x2: p.x + w / 2, y2: p.y + ringFont * 0.8 };
-  });
   const cardinal = cardinalPositions(fontSize);
   const cardinalBoxes = cardinal.map((c) => ({ x1: c.x - fontSize * 0.6, y1: c.y - fontSize, x2: c.x + fontSize * 0.6, y2: c.y + fontSize * 0.3 }));
   const requests: LabelRequest[] = labelCandidates(maxTop, perDirection).map((p) => ({
@@ -321,7 +312,11 @@ function fullLabels(fontSize: number, maxTop: number, perDirection: number, boun
     weight: p.c.population >= 10000 ? 700 : 600,
     fill: p.c.population >= 10000 ? COLORS.ink : COLORS.slate,
   }));
-  const rest = placeLabels(requests, [...center.boxes, ...ringBoxes, ...cardinalBoxes], bounds);
+  const rest = placeLabels(requests, [...center.boxes, ...cardinalBoxes], bounds);
+  const ringLabels = ringLabelPositions(
+    [...allPoints.map((p) => pointBox(p, 2)), ...rest.boxes.slice(allPoints.length)],
+    ringFont,
+  );
   return { labels: [...center.placed, ...rest.placed], ringLabels, ringFont, cardinal };
 }
 
@@ -464,9 +459,6 @@ function FocusMap({ slug, className = '' }: { slug: string; className?: string }
     ...(isBase ? [] : [pointBox({ ...f, r: focusR + 4 })]),
   ];
   const requests: LabelRequest[] = [];
-  if (!isBase) {
-    requests.push({ key: 'focus', text: focus.name, at: { ...f, r: focusR + 2 }, fontSize: 16, weight: 800, fill: COLORS.ink, force: true });
-  }
   requests.push({
     key: 'montarnaud',
     text: 'Montarnaud',
@@ -477,6 +469,19 @@ function FocusMap({ slug, className = '' }: { slug: string; className?: string }
     force: true,
     prefer: ['below', 'above'],
   });
+  if (!isBase) {
+    requests.push({
+      key: 'focus',
+      text: focus.name,
+      at: { ...f, r: focusR + 2 },
+      fontSize: 15,
+      weight: 800,
+      fill: COLORS.ink,
+      force: true,
+      // Libellé de préférence à l'opposé de Montarnaud (le trait de liaison part vers le centre)
+      prefer: Math.abs(f.x) >= Math.abs(f.y) ? [f.x < 0 ? 'left' : 'right', f.y < 0 ? 'above' : 'below'] : [f.y < 0 ? 'above' : 'below', f.x < 0 ? 'left' : 'right'],
+    });
+  }
   for (const p of neighbors) {
     if (p.c.slug === 'montarnaud') continue;
     requests.push({ key: p.c.slug, text: p.c.name, at: { ...p, r: 5 }, fontSize: 12.5, weight: 600, fill: COLORS.slate });

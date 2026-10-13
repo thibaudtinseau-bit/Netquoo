@@ -27,12 +27,16 @@ import { services, servicePath, type Service } from '@/data/services';
 import { communes, communePath, type Commune } from '@/data/communes';
 import { pageMetadata } from '@/lib/seo';
 
-export const metadata = pageMetadata({
-  title: 'Société de nettoyage pour entreprises à Montarnaud (34)',
-  description:
-    'Nettoyage professionnel pour entreprises à Montarnaud et dans un rayon de 20 km : bureaux, commerces, cabinets médicaux, vitres, fin de chantier, entrepôts. Devis gratuit sous 24 h ouvrées.',
-  path: '/',
-});
+export const metadata = {
+  ...pageMetadata({
+    title: 'Société de nettoyage pour entreprises à Montarnaud (34)',
+    description:
+      'Nettoyage professionnel pour entreprises à Montarnaud et à 20 km : bureaux, commerces, cabinets médicaux, vitres, fin de chantier. Devis gratuit sous 24 h.',
+    path: '/',
+  }),
+  // Le modèle « %s | Netquoo » du layout ne s'applique pas à la page racine
+  title: { absolute: 'Netquoo | Société de nettoyage pour entreprises à Montarnaud' },
+};
 
 /* -------------------------------------------------------------------------- */
 /*                                   Données                                  */

@@ -29,9 +29,9 @@ import { communes } from '@/data/communes';
 import { pageMetadata } from '@/lib/seo';
 
 export const metadata = pageMetadata({
-  title: 'Pourquoi choisir notre société de nettoyage à Montarnaud',
+  title: 'Notre société de nettoyage à Montarnaud',
   description:
-    'Netquoo, jeune société de nettoyage pour entreprises basée à Montarnaud : interlocuteur unique, équipe formée, horaires flexibles, contrôle qualité et devis clair. Découvrez nos engagements.',
+    'Netquoo, société de nettoyage pour entreprises à Montarnaud : interlocuteur unique, équipe formée, horaires flexibles et contrôle qualité. Nos engagements.',
   path: '/a-propos',
   image: '/images/equipe.webp',
 });

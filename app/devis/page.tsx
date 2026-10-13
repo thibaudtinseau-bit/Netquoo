@@ -25,7 +25,7 @@ import { pageMetadata } from '@/lib/seo';
 
 export const metadata = pageMetadata({
   title: 'Devis de nettoyage gratuit sous 24 h',
-  description: `Demandez votre devis de nettoyage professionnel gratuit et sans engagement : bureaux, commerces, cabinets médicaux, vitres, fin de chantier, entrepôts. Montarnaud et ${site.radiusKm} km alentour, réponse ${site.quoteDelay}.`,
+  description: `Devis de nettoyage professionnel gratuit et sans engagement pour vos bureaux, commerces ou cabinets à Montarnaud et ${site.radiusKm} km alentour. Réponse ${site.quoteDelay}.`,
   path: '/devis',
 });
 

@@ -8,7 +8,7 @@ import { pageMetadata } from '@/lib/seo';
 export const metadata = pageMetadata({
   title: 'Mentions légales',
   description:
-    'Mentions légales du site Netquoo, société de nettoyage pour entreprises à Montarnaud : éditeur, hébergeur, propriété intellectuelle, données personnelles (RGPD) et cookies.',
+    'Mentions légales de Netquoo, société de nettoyage à Montarnaud : éditeur, hébergeur, propriété intellectuelle, données personnelles (RGPD) et cookies.',
   path: '/mentions-legales',
 });
 

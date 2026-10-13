@@ -30,6 +30,7 @@ export function localBusinessJsonLd(): Record<string, unknown> {
     description: site.description,
     url: site.url,
     image: `${site.url}/images/hero.webp`,
+    logo: `${site.url}/brand/netquoo-logo-blue.png`,
     ...(site.phone ? { telephone: site.phone } : {}),
     ...(site.email ? { email: site.email } : {}),
     address: {
