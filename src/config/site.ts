@@ -38,6 +38,7 @@ export const site = {
   /** Dirigeant présenté dans la section « Qui sommes-nous » */
   owner: {
     name: 'Antonin',
+    fullName: 'Antonin Launois',
     role: 'Dirigeant de Netquoo',
     yearsAtHead: 15,
     photo: '/images/antonin.webp',

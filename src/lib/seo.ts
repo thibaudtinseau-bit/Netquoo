@@ -51,7 +51,7 @@ export function localBusinessJsonLd(): Record<string, unknown> {
       closes: site.openingHours.closes,
     },
     areaServed: communes.map((c) => ({ '@type': 'City', name: c.name })),
-    employee: { '@type': 'Person', name: site.owner.name, jobTitle: site.owner.role },
+    employee: { '@type': 'Person', name: site.owner.fullName, jobTitle: site.owner.role },
     priceRange: '€€',
   };
 }

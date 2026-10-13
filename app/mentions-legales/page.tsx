@@ -125,7 +125,7 @@ export default function MentionsLegalesPage() {
 
             <h2 id="publication">2. Directeur de la publication</h2>
             <p>
-              Le directeur de la publication est <Field value="" />, en qualité de représentant légal de {site.legalName}.
+              Le directeur de la publication est <Field value={site.owner.fullName} />, en qualité de représentant légal de {site.legalName}.
             </p>
 
             <h2 id="hebergement">3. Hébergement</h2>
