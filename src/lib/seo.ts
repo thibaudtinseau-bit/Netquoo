@@ -1,9 +1,11 @@
 import type { Metadata } from 'next';
-import { site } from '@/config/site';
+import { phoneHref, site } from '@/config/site';
 import { communes } from '@/data/communes';
 
 /** Métadonnées standard d'une page (canonical + Open Graph). */
-export function pageMetadata({ title, description, path, image = '/images/hero.webp' }: { title: string; description: string; path: string; image?: string }): Metadata {
+export const ogImage = { url: '/og-image.jpg', width: 1200, height: 630, alt: 'Netquoo, société de nettoyage pour entreprises à Montarnaud et 20 km alentour' };
+
+export function pageMetadata({ title, description, path }: { title: string; description: string; path: string }): Metadata {
   return {
     title,
     description,
@@ -15,7 +17,7 @@ export function pageMetadata({ title, description, path, image = '/images/hero.w
       siteName: site.name,
       locale: 'fr_FR',
       type: 'website',
-      images: [{ url: image }],
+      images: [ogImage],
     },
   };
 }
@@ -31,7 +33,7 @@ export function localBusinessJsonLd(): Record<string, unknown> {
     url: site.url,
     image: `${site.url}/images/hero.webp`,
     logo: `${site.url}/brand/netquoo-logo-blue.png`,
-    ...(site.phone ? { telephone: site.phone } : {}),
+    ...(phoneHref ? { telephone: phoneHref.replace('tel:', '') } : {}),
     ...(site.email ? { email: site.email } : {}),
     address: {
       '@type': 'PostalAddress',
@@ -41,7 +43,13 @@ export function localBusinessJsonLd(): Record<string, unknown> {
       addressRegion: site.address.region,
       addressCountry: site.address.country,
     },
-    geo: { '@type': 'GeoCoordinates', latitude: site.geo.lat, longitude: site.geo.lon },
+    geo: { '@type': 'GeoCoordinates', latitude: site.address.lat, longitude: site.address.lon },
+    openingHoursSpecification: {
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: site.openingHours.days.map((d) => `https://schema.org/${d}`),
+      opens: site.openingHours.opens,
+      closes: site.openingHours.closes,
+    },
     areaServed: communes.map((c) => ({ '@type': 'City', name: c.name })),
     employee: { '@type': 'Person', name: site.owner.name, jobTitle: site.owner.role },
     priceRange: '€€',

@@ -35,7 +35,7 @@ export function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`rounded-full px-4 py-2 text-[15px] font-medium transition-colors ${
+                className={`whitespace-nowrap rounded-full px-3 py-2 text-[15px] font-medium transition-colors xl:px-4 ${
                   active ? 'bg-brand-50 text-brand-700' : 'text-slate-600 hover:text-brand-700'
                 }`}
               >
@@ -46,11 +46,11 @@ export function Header() {
         </nav>
         <div className="hidden items-center gap-3 lg:flex">
           {phoneHref && (
-            <a href={phoneHref} className="inline-flex items-center gap-2 text-[15px] font-semibold text-ink hover:text-brand-700">
+            <a href={phoneHref} className="hidden items-center gap-2 whitespace-nowrap text-[15px] font-semibold text-ink hover:text-brand-700 xl:inline-flex">
               <Phone className="h-4 w-4 text-brand-600" /> {site.phone}
             </a>
           )}
-          <Link href="/devis" className="btn-primary !py-2.5">
+          <Link href="/devis" className="btn-primary whitespace-nowrap !py-2.5">
             Devis gratuit <ArrowRight className="h-4 w-4" />
           </Link>
         </div>

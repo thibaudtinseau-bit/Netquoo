@@ -15,7 +15,6 @@ export const metadata = pageMetadata({
   title: `Zones d'intervention autour de Montarnaud (${site.radiusKm} km)`,
   description: `Netquoo nettoie les locaux des entreprises dans ${communes.length} communes à moins de ${site.radiusKm} km de Montarnaud : Montpellier, Gignac, Juvignac, Pignan… Devis gratuit.`,
   path: PATH,
-  image: '/images/village.webp',
 });
 
 const base = communes.find((c) => c.slug === 'montarnaud');

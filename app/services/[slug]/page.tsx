@@ -76,7 +76,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: content.metaTitle,
     description: content.metaDescription,
     path: servicePath(service),
-    image: service.image,
   });
 }
 

@@ -33,7 +33,7 @@ export function Footer() {
               Société de nettoyage professionnel pour les entreprises, basée à Montarnaud et active dans un rayon de {site.radiusKm} km.
             </p>
             <ul className="mt-5 space-y-2 text-sm">
-              <li className="inline-flex items-center gap-2"><MapPin className="h-4 w-4 text-brand-300" /> {site.address.street ? `${site.address.street}, ` : ''}{site.address.postalCode} {site.address.city}</li>
+              <li className="inline-flex items-center gap-2"><MapPin className="h-4 w-4 shrink-0 text-brand-300" /> {site.address.street ? `${site.address.street}, ` : ''}{site.address.postalCode} {site.address.city}</li>
               {phoneHref && <li><a href={phoneHref} className="inline-flex items-center gap-2 hover:text-white"><Phone className="h-4 w-4 text-brand-300" /> {site.phone}</a></li>}
               {emailHref && <li><a href={emailHref} className="inline-flex items-center gap-2 hover:text-white"><Mail className="h-4 w-4 text-brand-300" /> {site.email}</a></li>}
             </ul>

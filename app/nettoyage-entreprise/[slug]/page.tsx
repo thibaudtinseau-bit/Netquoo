@@ -57,7 +57,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: content.metaTitle,
     description: content.metaDescription,
     path: communePath(commune),
-    image: '/images/village.webp',
   });
   // Le titre contient déjà « | Netquoo » : on évite le doublon avec le modèle du layout.
   return { ...meta, title: content.metaTitle.includes(site.name) ? { absolute: content.metaTitle } : content.metaTitle };

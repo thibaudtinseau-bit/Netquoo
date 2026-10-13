@@ -238,7 +238,7 @@ export const servicesContent: Record<string, ServiceContent> = {
     faq: [
       {
         q: 'À quelle heure intervenez-vous dans nos bureaux ?',
-        a: 'Nous nous adaptons à votre organisation. La plupart des entreprises préfèrent un passage tôt le matin ou en fin de journée pour ne pas gêner les équipes, mais une intervention en journée reste possible. Nos créneaux habituels vont de 7 h à 19 h du lundi au vendredi ; un passage plus matinal, plus tardif ou le week-end peut être prévu sur demande.',
+        a: 'Nous nous adaptons à votre organisation. La plupart des entreprises préfèrent un passage tôt le matin ou en fin de journée pour ne pas gêner les équipes, mais une intervention en journée reste possible. Nous sommes joignables du lundi au vendredi de 8 h à 18 h, et les passages peuvent être planifiés plus tôt le matin, en soirée ou le week-end sur demande.',
       },
       {
         q: 'Faut-il être présent pendant le nettoyage ?',
@@ -393,7 +393,7 @@ export const servicesContent: Record<string, ServiceContent> = {
     faq: [
       {
         q: 'Pouvez-vous intervenir avant l’ouverture de la boutique ?',
-        a: 'Oui, c’est même le créneau le plus demandé. Nous intervenons dès 7 h, et plus tôt sur demande, pour que votre point de vente soit prêt à l’ouverture. Un passage le soir après la fermeture est également possible.',
+        a: 'Oui, c’est même le créneau le plus demandé. Nous intervenons tôt le matin, à l’horaire convenu ensemble, pour que votre point de vente soit prêt à l’ouverture. Un passage le soir après la fermeture est également possible.',
       },
       {
         q: 'Nettoyez-vous les cuisines de restaurant ?',

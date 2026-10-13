@@ -10,22 +10,30 @@ export const site = {
   /** URL de production, sans slash final (à remplacer par le nom de domaine définitif) */
   url: process.env.NEXT_PUBLIC_SITE_URL || 'https://netquoo.vercel.app',
   /** Téléphone affiché, ex. « 06 12 34 56 78 » — laisser vide tant qu'il n'est pas connu */
-  phone: '' as string,
+  phone: '06 58 10 21 54' as string,
   /** Email de contact affiché, ex. « contact@netquoo.fr » */
-  email: '' as string,
+  email: 'antonin.launois@yahoo.fr' as string,
+  /** Adresse postale / siège social (mentions légales, données structurées, fiche Google) */
   address: {
-    street: '' as string,
-    postalCode: '34570',
-    city: 'Montarnaud',
+    street: '1743 rue de Malbosc' as string,
+    postalCode: '34080',
+    city: 'Montpellier',
     region: 'Occitanie',
     country: 'FR',
+    /** Coordonnées GPS de l'adresse (Géoplateforme IGN) */
+    lat: 43.635884,
+    lon: 3.827843,
   },
-  /** Coordonnées GPS du centre de Montarnaud (point de départ des interventions) */
+  /** Centre de la zone d'intervention (rayon de 20 km autour de Montarnaud) */
+  base: { city: 'Montarnaud', postalCode: '34570' },
+  /** Coordonnées GPS du centre de Montarnaud (centre de la zone d'intervention) */
   geo: { lat: 43.648, lon: 3.7053 },
   siret: '' as string,
   /** Rayon d'intervention en km */
   radiusKm: 20,
-  hours: 'Du lundi au vendredi, 7h–19h · interventions tôt le matin, le soir et le week-end sur demande',
+  hours: 'Du lundi au vendredi, 8h–18h · interventions tôt le matin, le soir et le week-end sur demande',
+  /** Horaires d'ouverture pour les données structurées (schema.org) */
+  openingHours: { days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '08:00', closes: '18:00' },
   quoteDelay: 'sous 24 h ouvrées',
   /** Dirigeant présenté dans la section « Qui sommes-nous » */
   owner: {

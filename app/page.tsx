@@ -673,7 +673,7 @@ function Zone() {
             </span>
             <span className="leading-tight">
               <span className="block font-bold text-ink">
-                {site.address.city} ({site.address.postalCode})
+                {site.base.city} ({site.base.postalCode})
               </span>
               <span className="block text-sm text-slate-500">
                 Point de départ · {communes.length} communes à {site.radiusKm}&nbsp;km ou moins

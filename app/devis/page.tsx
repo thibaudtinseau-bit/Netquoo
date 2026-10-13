@@ -243,8 +243,7 @@ export default function DevisPage() {
                     <div>
                       <p className="font-semibold text-ink">Zone d’intervention</p>
                       <p className="mt-0.5 leading-relaxed text-slate-600">
-                        {site.address.street ? `${site.address.street}, ` : ''}
-                        {site.address.postalCode} {site.address.city} et {site.radiusKm} km alentour, soit {communes.length} communes desservies.
+                        {site.base.city} ({site.base.postalCode}) et {site.radiusKm} km alentour, soit {communes.length} communes desservies.
                       </p>
                       <Link
                         href="/zones-intervention"

@@ -640,7 +640,7 @@ function sectionOrganisation(t: Ctx): CommuneSection {
 }
 
 function hoursText(): string {
-  // « Du lundi au vendredi, 7h–19h · interventions … » → « du lundi au vendredi, 7h–19h ; interventions … »
+  // « Du lundi au vendredi, 8h–18h · interventions … » → « du lundi au vendredi, 8h–18h ; interventions … »
   const h = site.hours.replace(/\s*·\s*/g, ' ; ');
   return h.charAt(0).toLowerCase() + h.slice(1);
 }

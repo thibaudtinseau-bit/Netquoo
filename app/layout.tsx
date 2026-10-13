@@ -6,7 +6,7 @@ import { Footer } from '@/components/Footer';
 import { MobileCtaBar } from '@/components/MobileCtaBar';
 import { JsonLd } from '@/components/JsonLd';
 import { site } from '@/config/site';
-import { localBusinessJsonLd } from '@/lib/seo';
+import { localBusinessJsonLd, ogImage } from '@/lib/seo';
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   description: site.description,
   applicationName: site.name,
   formatDetection: { telephone: false },
-  openGraph: { siteName: site.name, locale: 'fr_FR', type: 'website', images: [{ url: '/images/hero.webp' }] },
+  openGraph: { siteName: site.name, locale: 'fr_FR', type: 'website', images: [ogImage] },
 };
 
 export const viewport: Viewport = {

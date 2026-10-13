@@ -34,7 +34,6 @@ export const metadata = pageMetadata({
   description:
     'Netquoo, société de nettoyage pour entreprises à Montarnaud : interlocuteur unique, équipe formée, horaires flexibles et contrôle qualité. Nos engagements.',
   path: '/a-propos',
-  image: '/images/equipe.webp',
 });
 
 const pillars: { icon: LucideIcon; title: string; text: string }[] = [
@@ -177,7 +176,7 @@ export default function AProposPage() {
                 <span className="leading-tight">
                   <span className="block text-sm font-bold text-ink">Basée à Montarnaud</span>
                   <span className="block text-xs text-slate-500">
-                    {site.address.postalCode} · Hérault
+                    {site.base.postalCode} · Hérault
                   </span>
                 </span>
               </div>
