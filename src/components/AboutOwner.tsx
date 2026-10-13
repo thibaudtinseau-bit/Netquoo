@@ -37,7 +37,7 @@ export function AboutOwner({ headingLevel = 'h2', showMoreLink = true }: { headi
             <div className="relative aspect-[4/5] overflow-hidden rounded-4xl shadow-lift ring-1 ring-brand-100">
               <Image
                 src={owner.photo}
-                alt={`${owner.name}, dirigeant de Netquoo, en polo bleu marine dans le hall d’un immeuble de bureaux`}
+                alt={`${owner.name}, ${owner.role.charAt(0).toLowerCase() + owner.role.slice(1)}, en polo bleu marine dans le hall d’un immeuble de bureaux`}
                 fill
                 sizes="(min-width: 1024px) 40vw, (min-width: 640px) 28rem, 100vw"
                 className="object-cover object-top"
@@ -66,7 +66,7 @@ export function AboutOwner({ headingLevel = 'h2', showMoreLink = true }: { headi
             </Heading>
             <div className="mt-6 space-y-4 text-lg leading-relaxed text-slate-600">
               <p>
-                Derrière Netquoo, il y a <strong className="text-ink">{owner.name}</strong>. À la tête de la société depuis plus de{' '}
+                Derrière Netquoo, il y a <strong className="text-ink">{owner.name}</strong>, son fondateur. À la tête de la société depuis plus de{' '}
                 {owner.yearsAtHead}&nbsp;ans, il a appris à connaître chaque type de local professionnel&nbsp;: open spaces, boutiques,
                 cabinets de santé, entrepôts, locaux livrés après travaux.
               </p>

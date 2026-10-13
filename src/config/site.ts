@@ -39,7 +39,7 @@ export const site = {
   owner: {
     name: 'Antonin',
     fullName: 'Antonin Launois',
-    role: 'Dirigeant de Netquoo',
+    role: 'Gérant et fondateur de Netquoo',
     yearsAtHead: 15,
     photo: '/images/antonin.webp',
   },

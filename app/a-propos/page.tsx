@@ -132,7 +132,7 @@ export default function AProposPage() {
                 Netquoo, une société de nettoyage <span className="text-gradient">locale et engagée</span> à Montarnaud
               </h1>
               <p className="mt-6 max-w-2xl text-lg leading-relaxed text-slate-600 motion-safe:animate-fade-up motion-safe:[animation-delay:160ms] md:text-xl">
-                Implantée à Montarnaud et dirigée par {site.owner.name} depuis plus de {site.owner.yearsAtHead}&nbsp;ans, Netquoo se consacre au
+                Implantée à Montarnaud, fondée et dirigée par {site.owner.name} depuis plus de {site.owner.yearsAtHead}&nbsp;ans, Netquoo se consacre au
                 nettoyage des locaux professionnels dans un rayon de {site.radiusKm}&nbsp;km. Notre conviction&nbsp;: un service de proximité, réactif et soigné, porté
                 par des engagements clairs que nous tenons.
               </p>
